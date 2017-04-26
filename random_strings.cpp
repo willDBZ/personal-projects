@@ -1,4 +1,3 @@
-#include "bankaccount.h"
 #include <fstream>
 #include <iostream>
 #include <string.h>
@@ -11,8 +10,13 @@ using namespace std;
 // write a function that will print and count all the possible strings
 // made of 4 characters
 
+// prototypes
+void afficher(void);
+void createString(void);
+
 // variables
-char tab[4];
+const int longueur = 2;
+char tab[longueur];
 char x;
 char letters[52];
 
@@ -29,27 +33,36 @@ int main(void)
 		A++;
 	}
 
-	
+	// afficher
+	for (int i = 0; i < 53; i ++)
+	createString(); 
 
 	_getch();
 }
 
 void createString()
 {
-//	for (int j = 0; j < 4; j++)
-//	{
-//		// ++97 - 122 pour les minuscules
-//		for (int i = 65; i < 91; i++)
-//		{
-//			x = i;
-//		}
-//		tab[j] = x;
-//	}
+	// variables
+	static int compteur10 = -1; // compte le nombre de possibilités
+	static int position = longueur;
 
 
+	// tab[longueur] = letters[compteur10];
+	tab[position - 2] = letters[compteur10];
 
+	// associer les lettres
+	for (int i = 0; i < 52; i++)
+	{
+		tab[position-1] = letters[i]; 
+		afficher(); 
+	}
+	compteur10++;
+}
 
-	for (int i = 0; i < 4; i++)
+void afficher(void)
+{
+	// affichage
+	for (int i = 0; i < longueur; i++)
 		cout << tab[i];
 	cout << endl;
 }
